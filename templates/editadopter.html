@@ -1,0 +1,58 @@
+<html>
+    <!--  -->
+<head>
+<link rel = “stylesheet” src=”//normalize-css.googlecode.com/svn/trunk/normalize.css> 
+</head>
+
+<head>
+	<link rel=stylesheet type=text/css href="{{ url_for('static', filename='styles.css') }}">
+    </head>
+
+<body>
+
+<h1>{{"Edit Adopter"}}</h1>
+    
+<!--MESSAGE FLASHING EXAMPLE -->
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+
+<ul>
+{% for message in messages %}
+  <li><strong>{{message}}</strong></li>
+  {% endfor %}
+</ul>
+{% endif %}
+{% endwith %}
+    
+ 
+    
+
+    
+<form action="{{url_for('editAdopter',adopter_id=adopter.id )}}" method = 'POST'>
+<dl>
+    <dt><p>Adopter ID:</p></dt>
+    <dd><input type='text' size='5' name='id' value="{{adopter.id}}" READONLY></dd>
+    <dt><p>Adopter Name:</p></dt>
+    <dd><input type='text' size='80' name='name' placeholder="{{adopter.name}}"></dd>
+    <dt><p>Telephone number:</p></dt>
+    <dd><input type='text' size='10' name='phone' placeholder="{{adopter.phone}}"></dd>
+</dl>
+    
+    
+
+
+<input type='submit' value='Edit Adopter'>
+
+    
+    
+ 
+    
+    </br>
+
+
+<a href={{url_for("showAdopters")}}>Cancel</a> 
+
+
+</body>
+
+</html>

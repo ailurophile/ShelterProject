@@ -1,0 +1,81 @@
+<html>
+    <!--  -->
+<head>
+<link rel = “stylesheet” src=”//normalize-css.googlecode.com/svn/trunk/normalize.css> 
+</head>
+
+<head>
+	<link rel=stylesheet type=text/css href="{{ url_for('static', filename='styles.css') }}">
+    </head>
+
+<body>
+
+<h1>{{"Puppies found: "}}</h1>
+    
+<!--MESSAGE FLASHING EXAMPLE -->
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+
+<ul>
+{% for message in messages %}
+  <li><strong>{{message}}</strong></li>
+  {% endfor %}
+</ul>
+{% endif %}
+{% endwith %}
+    
+    
+
+
+
+{% for i in puppies %}
+
+<div>
+
+    <h3>{{i.id}}{{": "}} {{i.name}}</br></h3><p>
+        {%if employee==1 %}
+    
+    <a href = {{url_for('editPuppy', puppy_id = i.id)}}>Edit Puppy</a></br>
+    <a href = {{url_for('deletePuppy', puppy_id = i.id)}}>Delete Puppy</a></br>
+    <a href = {{url_for('adoptPuppy', puppy_id = i.id)}}>Adopt Puppy</a></br>
+    <a href = {{url_for('checkPuppyIn', puppy_id = i.id)}}>Transfer Puppy</a></br>
+    {%endif%}</p>
+    
+    {%if i.profile != None%}
+    <img src={{i.profile.picture}}></br>
+     {{i.profile.picture}}
+     {%endif%}
+
+
+    <p>{{"Name: "}} {{i.name}} </br>{{"Breed: "}} {{i.breed}}</br> {{"Gender: "}}{{ i.gender}}</br>  {{"   Date of Birth: "}} {{ i.dateOfBirth}} </br>
+{{"   Weight: "}} {{i.weight}}{{" pounds"}}</br>
+
+{%if i.profile != None%} 
+   {{"Description: "}} {{i.profile.description}}</br>
+    {{"Needs: "}}{{i.profile.needs}}
+    {%endif%}
+</p> 
+<p>{{"   Shelter ID: "}} {{i.shelter.id}}</br>
+{{"   Shelter Name: "}} {{i.shelter.name}} </br>
+{{i.shelter.address}}</br>
+{{i.shelter.city}}{{", "}} {{i.shelter.state}}  {{ i.shelter.zipCode}} </p></br>
+
+    
+    
+
+    
+    
+
+    
+ 
+    
+
+
+</div>
+
+
+{% endfor %}
+</body>
+    <a href = {{url_for('showShelters',employee = employee)}}>View Shelters</a></br>
+    <a href = {{url_for('searchPuppies')}}>Search Puppies</a>
+</html>

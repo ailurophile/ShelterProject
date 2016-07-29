@@ -1,0 +1,36 @@
+<html>
+    <!--  -->
+<head>
+<link rel = “stylesheet” src=”//normalize-css.googlecode.com/svn/trunk/normalize.css> 
+</head>
+
+<head>
+	<link rel=stylesheet type=text/css href="{{ url_for('static', filename='styles.css') }}">
+    </head>
+
+<body>
+
+<h1>{{"Welcome"}}</h1>
+    
+<!--MESSAGE FLASHING EXAMPLE -->
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+
+<ul>
+{% for message in messages %}
+  <li><strong>{{message}}</strong></li>
+  {% endfor %}
+</ul>
+{% endif %}
+{% endwith %}
+    
+    <h2>{{"VISITORS:"}}</h2></br>
+    <a href = {{url_for('showShelters')}}>View Shelters</a></br>
+<a href = {{url_for('searchPuppies')}}>Search Puppies</a></br>
+</br>
+    <h2>{{"EMPLOYEES:"}}</h2></br>
+<a href = {{url_for('maintainDatabase')}}>Access Database</a>
+
+</body>
+
+</html>

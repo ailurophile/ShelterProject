@@ -1,0 +1,84 @@
+<html>
+    <!--  -->
+<head>
+<link rel = “stylesheet” src=”//normalize-css.googlecode.com/svn/trunk/normalize.css> 
+</head>
+
+<head>
+	<link rel=stylesheet type=text/css href="{{ url_for('static', filename='styles.css') }}">
+    </head>
+
+<body>
+
+<h1>{{"Edit Puppy"}}</h1>
+    
+<!--MESSAGE FLASHING EXAMPLE -->
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+
+<ul>
+{% for message in messages %}
+  <li><strong>{{message}}</strong></li>
+  {% endfor %}
+</ul>
+{% endif %}
+{% endwith %}
+    
+ 
+    
+
+    
+<form action="{{url_for('editPuppy', puppy_id = pup.id )}}" method = 'POST'>
+<dl>
+    <dt><p>Puppy ID:</p></dt>
+    <dd><input type='text' size='5' name='id' value="{{pup.id}}" READONLY></dd>
+    <dt><p>Puppy Name:</p></dt>
+    <dd><input type='text' size='80' name = 'name' placeholder="{{pup.name}}"></dd>
+    <dt><p>Breed:</p></dt>
+    <dd><input type='text' size='30' name = 'breed' placeholder="{{pup.breed}}"></dd>
+    <dt><p>Gender:</p></dt>
+    <dd><input type='text' size='10' name = 'gender' placeholder="{{pup.gender}}"></dd>
+    <dt><p>Date of birth yyyy-mm-dd:</p></dt>
+    <dd><input type='date' size='20' name = 'birth' placeholder="{{pup.dateOfBirth}}"></dd>
+    <dt><p>Weight in pounds:</p></dt>
+    <dd><input type='text' size='10' name = 'weight' placeholder="{{pup.weight}}"></dd>
+    <dt><p>Location of picture:</p></dt>
+    {% if pup.profile != None %}
+    <dd><input type='text' size='100' name = 'picture' placeholder="{{pup.profile.picture}}"></dd>
+    <dt><p>Description:</p></dt>
+    <dd><input type='text' size='250' name = 'description' placeholder="{{pup.profile.description}}"></dd>
+    <dt><p>Special Needs:</p></dt>
+    <dd><input type='text' size='500' name = 'needs' placeholder="{{pup.profile.needs}}"></dd>
+    {% endif %}
+    {% if pup.profile == None %}
+    <dd><input type='text' size='100' name= 'picture'></dd>
+    <dt><p>Description:</p></dt>
+    <dd><input type='text' size='250' name = 'description'></dd>
+    <dt><p>Special Needs:</p></dt>
+    <dd><input type='text' size='500' name = 'needs'></dd>
+    {% endif %}
+</dl>
+    
+    
+
+
+<input type='submit' value='Edit Puppy'> </br>
+
+    
+    
+ 
+    
+    </br>
+
+
+<p><a href={{url_for("checkPuppyIn", puppy_id = pup.id)}}>Check In</a> </p>
+
+    </br>
+
+
+<p><a href={{url_for("maintainDatabase")}}>Cancel</a> </p>
+
+
+</body>
+
+</html>

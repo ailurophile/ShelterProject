@@ -1,0 +1,85 @@
+<html>
+    <!--  -->
+<head>
+<link rel = “stylesheet” src=”//normalize-css.googlecode.com/svn/trunk/normalize.css> 
+</head>
+
+<head>
+	<link rel=stylesheet type=text/css href="{{ url_for('static', filename='styles.css') }}">
+    </head>
+
+<body>
+
+<h1>{{"View Puppy"}}</h1>
+    
+<!--MESSAGE FLASHING EXAMPLE -->
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+
+<ul>
+{% for message in messages %}
+  <li><strong>{{message}}</strong></li>
+  {% endfor %}
+</ul>
+{% endif %}
+{% endwith %}
+    
+ 
+    {%if pup.profile != None%}
+    <img src={{pup.profile.picture}}></br>
+     {{pup.profile.picture}}
+     {%endif%}
+
+    
+    
+    
+
+<dl>
+    <dt><p>{{"ID: "}}{{pup.id}}</p></dt>
+    <dt><p>{{"Puppy Name: "}}{{pup.name}}</p></dt>
+    <dt><p>{{"Breed: "}}{{pup.breed}}</p></dt>
+    <dt><p>{{"Gender: "}}{{pup.gender}}</p></dt>
+    <dt><p>{{"Date of birth: "}}{{pup.dateOfBirth}}</p></dt>
+    <dt><p>{{"Weight in pounds: "}}{{pup.weight}}</dt>
+
+     {%if pup.profile != None%}
+     
+    <dt><p>{{"Description: "}} {{pup.profile.description}}</p></dt>
+    <dt><p>{{"Needs: "}}{{pup.profile.needs}}</p></dd>
+    
+    {%endif%}
+    
+</dl>
+    
+    {% if employee == 1 %}
+    
+    <p>{{"Shelter ID: "}}{{pup.shelter_id}}</p>
+    <p>{{"Adopters: "}}</p>
+    {% for a in pup.adopters %}
+    <p>{{a.name}}</p></br>
+    {% endfor %}
+    
+    <a href = {{url_for('editPuppy', puppy_id = pup.id)}}>Edit Puppy</a> </br>
+    <a href = {{url_for('deletePuppy', puppy_id = pup.id)}}>Delete Puppy</a> </br>
+    <a href = {{url_for('adoptPuppy', puppy_id = pup.id)}}>Adopt Puppy</a> </br>
+    <a href = {{url_for('checkPuppyIn', puppy_id = pup.id)}}>Transfer/Check Puppy In</a> </br>
+    
+    {%endif%}
+    
+
+
+
+
+    
+    
+ 
+    
+    </br>
+
+{% if employee == 1 %}
+<a href={{url_for("maintainDatabase")}}>Maintain Database</a> 
+{% endif %}
+<p> <a href = "{{url_for('welcome')}}">Home</a></p>
+</body>
+
+</html>

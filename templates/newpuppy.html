@@ -1,0 +1,68 @@
+<html>
+    <!--  -->
+<head>
+<link rel = “stylesheet” src=”//normalize-css.googlecode.com/svn/trunk/normalize.css> 
+</head>
+
+<head>
+	<link rel=stylesheet type=text/css href="{{ url_for('static', filename='styles.css') }}">
+    </head>
+
+<body>
+
+<h1>{{"Add Puppy"}}</h1>
+    
+<!--MESSAGE FLASHING EXAMPLE -->
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+
+<ul>
+{% for message in messages %}
+  <li><strong>{{message}}</strong></li>
+  {% endfor %}
+</ul>
+{% endif %}
+{% endwith %}
+    
+ 
+    
+
+    
+<form action="{{url_for('newPuppy' )}}" method = 'POST'>
+<dl>
+    <dt><p>Puppy Name (required):</p></dt>
+    <dd><input type='text' size='80' name='name'></dd>
+    <dt><p>Breed:</p></dt>
+    <dd><input type='text' size='30' name='breed'></dd>
+    <dt><p>Gender (required):</p></dt>
+    <dd><input type='text' size='10' name='gender'></dd>
+    <dt><p>Date of birth yyyy-mm-dd:</p></dt>
+    <dd><input type='date' size='20' name='birth'></dd>
+    <dt><p>Weight in pounds:</p></dt>
+    <dd><input type='text' size='10' name='weight'></dd>
+    <dt><p>Location of picture:</p></dt>
+    <dd><input type='text' size='100' name='picture'></dd>
+    <dt><p>Description:</p></dt>
+    <dd><input type='text' size='250' name='description'></dd>
+    <dt><p>Special Needs:</p></dt>
+    <dd><input type='text' size='300'  name='needs'></dd>
+</dl>
+    
+    
+
+
+<input type='submit' value='Create Puppy'>
+
+    
+    
+ 
+    
+    </br>
+
+
+<a href={{url_for("maintainDatabase")}}>Cancel</a> 
+
+
+</body>
+
+</html>

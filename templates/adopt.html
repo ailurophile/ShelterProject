@@ -1,0 +1,75 @@
+<html>
+    <!--  -->
+<head>
+<link rel = “stylesheet” src=”//normalize-css.googlecode.com/svn/trunk/normalize.css> 
+</head>
+
+<head>
+	<link rel=stylesheet type=text/css href="{{ url_for('static', filename='styles.css') }}">
+    </head>
+
+<body>
+
+<h1>{{"Adopt Puppy"}}</h1>
+    
+<!--MESSAGE FLASHING EXAMPLE -->
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+
+<ul>
+{% for message in messages %}
+  <li><strong>{{message}}</strong></li>
+  {% endfor %}
+</ul>
+{% endif %}
+{% endwith %}
+    
+ 
+    {%if pup.profile != None%}
+    <img src={{pup.profile.picture}}></br>
+     {{pup.profile.picture}}
+     {%endif%}
+
+    
+    
+    
+
+<dl>
+    <dt><p>{{"ID: "}}{{pup.id}}</p></dt>
+    <dt><p>{{"Puppy Name: "}}{{pup.name}}</p></dt>
+    <dt><p>{{"Breed: "}}{{pup.breed}}</p></dt>
+    <dt><p>{{"Gender: "}}{{pup.gender}}</p></dt>
+    <dt><p>{{"Date of birth: "}}{{pup.dateOfBirth}}</p></dt>
+    <dt><p>{{"Weight in pounds: "}}{{pup.weight}}</p></dt>
+
+     {%if pup.profile != None%}
+     
+    <dt><p>{{"Description: "}} {{pup.profile.description}}</p></dt>
+    <dt>{{"Needs: "}}{{pup.profile.needs}}</dd>
+    
+    {%endif%}
+</dl> 
+    
+
+
+
+<form action="{{url_for('adoptPuppy', puppy_id = pup.id )}}" method = 'POST'>
+    
+<p>Enter Adopter ID:</p>
+
+<input type='text' size='10' name='adopter_id' >
+
+<input type='submit' value='Adopt Puppy'> </br>
+
+    
+ 
+    
+    </br>
+
+<a href= {{url_for('showPuppy',puppy_id = pup.id, employee =1)}}>Cancel</a>
+
+
+
+</body>
+
+</html>

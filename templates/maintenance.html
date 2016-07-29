@@ -1,0 +1,66 @@
+<html>
+    <!--  -->
+<head>
+<link rel = “stylesheet” src=”//normalize-css.googlecode.com/svn/trunk/normalize.css> 
+</head>
+
+<head>
+	<link rel=stylesheet type=text/css href="{{ url_for('static', filename='styles.css') }}">
+    </head>
+
+<body>
+
+<h1>{{"Maintain Database"}}</h1>
+    
+<!--MESSAGE FLASHING EXAMPLE -->
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+
+<ul>
+{% for message in messages %}
+  <li><strong>{{message}}</strong></li>
+  {% endfor %}
+</ul>
+{% endif %}
+{% endwith %}
+    
+ 
+    
+<p> <a href = "{{url_for('showShelters', employee=1)}}">Maintain Shelters</a></p>
+ 
+    
+<p><a href = "{{url_for('showAdopters')}}">Maintain Adopters</a></p>
+    
+<p><a href = "{{url_for('capacityReport')}}">Capacity Report</a></p>
+    
+<h2>{{"Maintain Puppies:"}}</h2>
+    
+<p> <a href = "{{url_for('newPuppy')}}">Add Puppy</a></p>
+    
+<form action="{{url_for('maintainDatabase' )}}" method = 'POST'>
+
+<p>Puppy ID:</p>
+
+<input type='text' size='10' name='puppy_id' >
+
+<input type='submit' value='View Puppy'>
+
+    
+<p>Shelter ID:</p>
+
+<input type='text' size='10' name='shelter_id' >
+
+<input type='submit' value='View Shelter'>
+
+    
+ 
+    
+    </br>
+
+
+<p> <a href = "{{url_for('welcome')}}">Home</a></p>
+
+
+</body>
+
+</html>

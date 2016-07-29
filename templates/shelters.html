@@ -1,0 +1,73 @@
+<html>
+    <!--  -->
+<head>
+<link rel = “stylesheet” src=”//normalize-css.googlecode.com/svn/trunk/normalize.css> 
+</head>
+
+<head>
+	<link rel=stylesheet type=text/css href="{{ url_for('static', filename='styles.css') }}">
+    </head>
+
+<body>
+
+<h1>{{"Shelters"}}</h1>
+    
+<!--MESSAGE FLASHING EXAMPLE -->
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+
+<ul>
+{% for message in messages %}
+  <li><strong>{{message}}</strong></li>
+  {% endfor %}
+</ul>
+{% endif %}
+{% endwith %}
+    
+    
+    {%if employee==1 %}
+    
+    <p> <a href = {{url_for('newShelter')}}>Add Shelter</a></p>
+    {%endif%}
+
+
+{% for i in shelters %}
+
+<div>
+
+<p><h2>{{i.id}}{{": "}} {{i.name}}</h2>
+        {%if employee==1 %}
+    
+    <a href = {{url_for('editShelter', shelter_id = i.id)}}>Edit Shelter</a></br>
+    <a href = {{url_for('deleteShelter', shelter_id = i.id)}}>Delete Shelter</a>
+    
+    {%endif%}</p>
+    
+
+    
+<p>{{i.address}}</p>
+
+<p>{{i.city}}{{", "}} {{i.state}}  {{ i.zipCode}} </p>
+    
+
+    <p><a href={{i.website}}>{{i.website}}</a> </p>
+    
+    
+  <a href = {{url_for('showShelterPuppies', shelter_id = i.id, employee = employee)}}>View Puppies</a>
+    
+ 
+    
+    </br>
+
+</div>
+
+
+{% endfor %}
+
+{%if employee==1 %}
+    
+    <p> <a href = {{url_for('maintainDatabase')}}>Maintain Database</a></p>
+{%endif%}
+</body>
+
+</html>
